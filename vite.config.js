@@ -11,4 +11,12 @@ export default defineConfig({
             refresh: true,
         }),
     ],
+    css: {
+        preprocessorOptions: {
+            scss: {
+                quietDeps: true, // Bungkam warning dari file di node_modules (Bootstrap)
+                silenceDeprecations: ['import'], // Bungkam khusus warning @import kuno
+            },
+        },
+    },
 });

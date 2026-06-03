@@ -6,13 +6,14 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CustomResetController; // <-- Ini tambahan baru buat ngatur reset password
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 // Route bawaan dari fitur Login/Register Bootstrap tadi
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/ganti-password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->name('password.update.self');
 
 // =========================================================================
 // RUTE BARU: ALUR LUPA PASSWORD MANUAL (KHUSUS UMKM YANG BELUM LOGIN)

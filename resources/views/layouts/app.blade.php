@@ -209,7 +209,7 @@
         <div class="modal fade" id="modalGantiPassword" tabindex="-1" aria-labelledby="modalGantiPasswordLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content border-0 shadow">
-                    <form action="#" method="POST">
+                    <form action="{{ route('password.update.self') }}" method="POST">    
                         @csrf
                         <div class="modal-header bg-fintrack text-white border-0">
                             <h5 class="modal-title fw-bold" id="modalGantiPasswordLabel"><i class="bi bi-shield-lock me-2"></i>Buat Password Baru</h5>

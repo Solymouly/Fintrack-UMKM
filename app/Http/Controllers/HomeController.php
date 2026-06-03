@@ -40,4 +40,24 @@ class HomeController extends Controller
         // Lempar semua datanya ke halaman depan
         return view('home', compact('pemasukan', 'pengeluaran', 'saldo', 'recentTransactions', 'startDate', 'endDate'));
     }
+
+    public function updatePassword(\Illuminate\Http\Request $request)
+    {
+        $request->validate([
+            'password_lama' => 'required',
+            'password_baru' => 'required|min:6|confirmed',
+        ]);
+
+        $user = auth()->user();
+
+        if (!\Illuminate\Support\Facades\Hash::check($request->password_lama, $user->password)) {
+            return back()->with('error', 'Gagal! Password lama salah.');
+        }
+
+        $user->password = \Illuminate\Support\Facades\Hash::make($request->password_baru);
+        $user->save();
+
+        return back()->with('success', 'Mantap! Password rahasia kamu berhasil diperbarui.');
+    }
+
 }
